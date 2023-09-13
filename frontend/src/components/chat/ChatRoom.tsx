@@ -15,11 +15,21 @@ const ChatRoom = ({ username }: { username: string }) => {
   const socket = io("http://localhost:3000");
 
   useEffect(() => {
+    const requestChatHistory = () => {
+      socket.emit("requestChatHistory");
+    };
+
     socket.on("message", (message: Message) => {
       console.log(message, "message");
 
       setMessages((prevMessages: any) => [...prevMessages, message]);
     });
+
+    socket.on("chatHistory", (history: Message[]) => {
+      setMessages(history);
+    });
+
+    requestChatHistory();
 
     return () => {
       socket.disconnect();
@@ -57,7 +67,11 @@ const ChatRoom = ({ username }: { username: string }) => {
                     <span>{ele.username}</span>
                   </div>
                 )}
-                <div style={{position: ele.username === username ? 'static' : 'relative'}}>
+                <div
+                  style={{
+                    position: ele.username === username ? "static" : "relative",
+                  }}
+                >
                   <p>{ele.message}</p>
                   <span className="date-send">
                     {beautifyDate(ele.timestamp)}

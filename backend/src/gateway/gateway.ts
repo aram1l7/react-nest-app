@@ -28,10 +28,15 @@ export class AppGateway {
 
         this.connectedUsers.set(username, client);
 
-        this.server.emit('userJoined', username);
-
         const connectedUsernames = Array.from(this.connectedUsers.keys());
         client.emit('connectedUsers', connectedUsernames);
+        console.log(chatMessages, 'messages');
+        this.server.emit('chatHistory', chatMessages);
+    }
+
+    @SubscribeMessage('requestChatHistory')
+    handleRequestChatHistory(client: any): void {
+        client.emit('chatHistory', chatMessages);
     }
 
     @SubscribeMessage('message')
@@ -44,9 +49,7 @@ export class AppGateway {
         };
 
         chatMessages.push(chatMessage);
-        console.log('Received message:', chatMessage);
-        console.log(chatMessages, 'messages');
-
+ 
         this.server.emit('message', chatMessage);
     }
 }
