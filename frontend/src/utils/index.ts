@@ -11,11 +11,11 @@ export const beautifyDate = (serverDate: Date) => {
 
   let formattedDate;
 
-  if (timeDifference < 10 * minuteInMilliseconds) {
+  if (timeDifference < minuteInMilliseconds) {
     formattedDate = "Just now";
   } else if (timeDifference < hourInMilliseconds) {
     const minutesAgo = Math.floor(timeDifference / minuteInMilliseconds);
-    formattedDate = `${minutesAgo} minutes ago`;
+    formattedDate = `${minutesAgo} ${minutesAgo <= 1 ? 'minute' : 'minutes'} ago`;
   } else if (timeDifference < dayInMilliseconds) {
     const hoursAgo = Math.floor(timeDifference / hourInMilliseconds);
     formattedDate = `${hoursAgo}h ago`;

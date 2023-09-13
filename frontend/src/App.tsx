@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Input, Modal } from "semantic-ui-react";
 import io from "socket.io-client";
-import ChatRoom from "./components/chat/ChatRoom";
+import ChatRoom from "./components/ChatRoom";
 import "./App.scss";
 import "semantic-ui-css/semantic.min.css";
 
