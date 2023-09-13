@@ -58,3 +58,12 @@ export const generateAvatar = (text: string) => {
 
   return canvas.toDataURL("image/png");
 };
+
+
+export const scrollChatToBottom = () => {
+  let messageWrapper: HTMLElement | null =
+    document.querySelector(".messages-wrapper");
+  if (messageWrapper) {
+    messageWrapper.scrollTop = messageWrapper.scrollHeight;
+  }
+}

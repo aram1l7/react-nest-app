@@ -11,15 +11,17 @@
   @media only screen and (min-width: 1200px) {
     width: 800px !important;
   }
+
+  h3{
+    margin-top: 15px !important;
+  }
 }
 .messages-wrapper {
-  min-height: 590px;
-  max-height: 590px;
-  overflow: auto;
-  align-items: end;
-  justify-content: end;
-  flex-direction: column;
+  max-height: 550px; 
+  min-height: 300px;
+  overflow-y: auto; 
   display: flex;
+  flex-direction: column;
   gap: 2rem;
   padding: 1.5rem;
 
@@ -33,16 +35,12 @@
       font-size: 12px;
     }
 
-    .message-info{
+    .message-info {
       margin-bottom: 0;
     }
 
     &.my-message {
       justify-content: end;
-
-      .message-info{
-        text-align: right;
-      }
     }
 
     &.member-message {
@@ -69,6 +67,7 @@
 }
 
 .chat-input-wrapper {
+  margin-top: 15px;
   form {
     display: flex;
     align-items: stretch;

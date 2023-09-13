@@ -4,6 +4,7 @@ import ChatInput from "./ChatInput";
 import { Container } from "semantic-ui-react";
 import Message from "./Message";
 import { MessageType } from "../types/message";
+import { scrollChatToBottom } from "../utils";
 
 const ChatRoom = ({ username }: { username: string }) => {
   const [messages, setMessages] = useState<any>([]);
@@ -16,14 +17,17 @@ const ChatRoom = ({ username }: { username: string }) => {
 
     socket.on("message", (message: MessageType) => {
       console.log(message, "message");
-
+      setTimeout(() => {
+        scrollChatToBottom();
+      }, 200);
       setMessages((prevMessages: MessageType[]) => [...prevMessages, message]);
     });
 
-   
-
     socket.on("chatHistory", (history: MessageType[]) => {
       setMessages(history);
+      setTimeout(() => {
+        scrollChatToBottom();
+      }, 200);
     });
 
     requestChatHistory();

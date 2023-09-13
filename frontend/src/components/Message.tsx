@@ -71,6 +71,7 @@ function Message({
       <div
         style={{
           position: message.username === username ? "static" : "relative",
+          textAlign: message.username === username ? "right" : "left",
         }}
       >
         <p className="message-info">{message.message}</p>
